@@ -102,7 +102,7 @@ CPPFLAGS	+= -I$(INCLUDE_DIR) $(DEFS)
 
 LDFLAGS		+= --static -nostartfiles
 LDFLAGS		+= -L$(LIB_DIR)
-LDFLAGS		+= -L/c/BAK/linux/gcc-stm32f030/newlibc/arm-none-eabi/lib
+LDFLAGS		+= -L/d/project/dm3730/gcc-s32/newlibc/arm-none-eabi/lib
 LDFLAGS		+= -T$(LDSCRIPT)
 LDFLAGS		+= -Wl,-Map=$(*).map
 LDFLAGS		+= -Wl,--gc-sections

@@ -63,11 +63,12 @@ static void usart_setup(void)
 	/* Enable clocks for GPIO port A (for GPIO_USART2_TX) and USART1. */
 	rcc_periph_clock_enable(RCC_USART1);
 	rcc_periph_clock_enable(RCC_GPIOA);
+	rcc_periph_clock_enable(RCC_GPIOF);
 
 	/* Setup GPIO pin GPIO_USART1_TX/GPIO9 on GPIO port A for transmit. */
 	gpio_mode_setup(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO9);
 	gpio_set_af(GPIOA, GPIO_AF1, GPIO9);
-
+	gpio_mode_setup(GPIOF, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO0);
 	/* Setup UART parameters. */
 	usart_set_baudrate(USART1, 115200);
 	usart_set_databits(USART1, 8);
@@ -121,7 +122,7 @@ int main(void)
 
 		temp = adc_read_regular(ADC1);
 		my_usart_print_int(USART1, temp);
-
+		gpio_toggle(GPIOF, GPIO0);
 		int i;
 		for (i = 0; i < 800000; i++) {   /* Wait a bit. */
 			__asm__("nop");
